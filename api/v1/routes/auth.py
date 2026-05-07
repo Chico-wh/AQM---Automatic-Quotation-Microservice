@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends
-from fastapi.exceptions import MalformedRequest
 from fastapi.requests import Request
 
 router = APIRouter(
