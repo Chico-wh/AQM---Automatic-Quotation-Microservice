@@ -2,8 +2,7 @@ from core.database import Base
 from sqlalchemy import Column, Float, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column ,Mapped
 from datetime import datetime
-from models.services import Services
-from models.user import User
+
 
 class Quote(Base):
     __tablename__ = "quotes"

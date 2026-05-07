@@ -13,6 +13,6 @@ app = FastAPI(
 def health_check():
     return {"message": "API is running smoothly,", "status": "healthy", "environment": settings.ENVIRONMENT}
 #Inclusão das rotas 
-from api.v1.routes.main import Main_router
-app.include_router(prefix='/auth', router=Main_router)
+from api.v1.routes.main_router import Main_router
+app.include_router(router=Main_router)
 

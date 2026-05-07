@@ -4,6 +4,10 @@ from core.database import Base, engine
 # Esse import faz o SQLAlchemy registrar o model User no Base.metadata.
 # Sem isso, nenhuma tabela é criada.
 from models.user import User
+from models.customers import Customer
+from models.services import Services
+from models.quote import Quote
+from models.pricing_rule import Rule
 
 
 def create_tables():

@@ -2,7 +2,6 @@ from core.database import Base
 from sqlalchemy import Column, Float, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship, mapped_column ,Mapped
 from datetime import datetime
-from models.user import User
 
 class Rule(Base):
     __tablename__ = "pricing_rules"

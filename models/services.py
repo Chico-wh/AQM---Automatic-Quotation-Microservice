@@ -3,7 +3,6 @@ from sqlalchemy import Column, Float, Integer, String, DateTime, Boolean, Foreig
 from sqlalchemy.orm import relationship, mapped_column ,Mapped
 from datetime import datetime
 from models.quote import Quote
-from models.user import User
 
 class Services(Base):
     __tablename__ = "services"
@@ -17,6 +16,7 @@ class Services(Base):
     user: Mapped["User"] = relationship(
         "User", back_populates="services"
     )
+    active: Mapped[bool] = mapped_column(Boolean, default=True)
     quote: Mapped[list["Quote"]] = relationship("Quote", back_populates="service")
     created_at : Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow(), nullable=False)
     updated_at : Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow(), nullable=False)

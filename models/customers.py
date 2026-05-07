@@ -1,9 +1,7 @@
 from core.database import Base
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship,mapped_column,Mapped
-import datetime 
-from models.user import User
-
+from datetime import datetime
 class Customer(Base):
     __tablename__ = "customers"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -13,4 +11,3 @@ class Customer(Base):
     phone: Mapped[str] = mapped_column(String, nullable=True)
     created_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.utcnow(), nullable=False)
     updated_at: Mapped[DateTime] = mapped_column(DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow(), nullable=False)
-    
