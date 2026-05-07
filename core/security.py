@@ -9,7 +9,7 @@ from core.config import settings
 # Configuração do bcrypt para hash de senha.
 # Isso será usado no cadastro e no login.
 pwd_context = CryptContext(
-    schemes=["bcrypt"],
+    schemes=["pbkdf2_sha256"],
     deprecated="auto",
 )
 

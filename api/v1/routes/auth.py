@@ -2,8 +2,9 @@ from fastapi import APIRouter, Depends
 from fastapi.requests import Request
 from core.database import get_db
 from core.security import hash_password, verify_password, create_access_token, decode_access_token
-from schemas.user_schema import UserCreate, User, UserDelete, UserUpdate
+from schemas.user_schema import UserCreate, UserSchema, UserDelete, UserUpdate
 from schemas.auth import login as UserLogin
+from models.user import User
 router = APIRouter(
     prefix = "/auth",
     tags = ["auth"]
@@ -15,7 +16,7 @@ async def Login(user_data: UserLogin, request: Request, db = Depends(get_db)):
     email = user_data.email
     if password is not None and email is not None:
         db_user = db.query(User).filter(User.email == email).first()
-        if db_user and verify_password(password, db_user.hashed_password):
+        if db_user and verify_password(password, db_user.hash_password):
             token = create_access_token({"sub": str(db_user.id)})
             return {"acess_token":token, "token_type": "bearer"}
         else:
@@ -26,11 +27,11 @@ async def Login(user_data: UserLogin, request: Request, db = Depends(get_db)):
 
 @router.post("/register")
 async def Register(user_data: UserCreate, request: Request,db = Depends(get_db)):
-    db.add(User(username=user_data.username, email=user_data.email, hashed_password=hash_password(user_data.password)))
+    db.add(User(username=user_data.username, email=user_data.email, hash_password=hash_password(user_data.password)))
     db.commit()
 
     return {"message": "Register route"}
-@router.get("/me",response_model=User)
+@router.get("/me",response_model=UserSchema)
 async def Me(request: Request):
     token = request.headers.get("Authorization")
     #a função Me é um endpoint GET que retorna as informações do usuário autenticado. Ele

@@ -21,8 +21,11 @@ class User(Base):
     hash_password: Mapped[str] = mapped_column(String, nullable=False)
     #relacionamento com clientes e serviços, indicando que um usuário pode ter vários clientes e serviços associados a ele. O back_populates é usado para criar uma relação bidirecional entre os modelos, permitindo acessar os clientes e serviços de um usuário e o usuário de um cliente ou serviço.
     clients:Mapped[list["Customer"]] = relationship("Customer", back_populates="user")
+    #relacionamento com regras de precificação, indicando que um usuário pode ter várias regras de precificação associadas a ele. O back_populates é usado para criar uma relação bidirecional entre os modelos, permitindo acessar as regras de precificação de um usuário e o usuário de uma regra.
+    
     services:Mapped[list["Services"]] = relationship("Services", back_populates="user")
     quotes:Mapped[list["Quote"]] = relationship("Quote", back_populates="user")
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    customer :Mapped[Customer] = relationship("Customer", back_populates="user")
     created_at :Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow(), nullable=False)
     

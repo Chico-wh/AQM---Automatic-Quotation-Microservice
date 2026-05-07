@@ -6,7 +6,7 @@ class UserCreate(BaseModel):
     email: EmailStr = Field(description="A valid email address is required", example="user@example.com", max_length=50)
     password: str = Field(description="Password Field", example="password123", min_length=8, max_length=128)
 #class pra retornar infos de usuarios 
-class User(BaseModel):
+class UserSchema(BaseModel):
     id: int
     username: str
     email: EmailStr

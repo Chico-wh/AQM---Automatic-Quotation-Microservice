@@ -9,7 +9,7 @@ class Quote(Base):
     id : Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     service_id: Mapped[int] = mapped_column(ForeignKey("services.id"), nullable=False)
-    service: Mapped["Services"] = relationship("Services", back_populates="quotes")
+    service: Mapped["Services"] = relationship("Services", back_populates="quote")
     description : Mapped[str] = mapped_column(String, nullable=True)
     net_cost : Mapped[float] = mapped_column(Float, nullable=False)
     gross_cost : Mapped[float] = mapped_column(Float, nullable=False)
