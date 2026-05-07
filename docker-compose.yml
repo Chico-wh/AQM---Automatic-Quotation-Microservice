@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: smart_quote_db
+
+    # Reinicia o container automaticamente caso ele pare
+    restart: always
+
+    # Variáveis usadas pelo PostgreSQL para criar o banco inicial
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: smart_quote_db
+
+    # Porta local:porta_do_container
+    # Isso permite acessar o banco em localhost:5432
+    ports:
+      - "5432:5432"
+
+    # Volume para persistir os dados mesmo se o container for desligado
+    volumes:
+      - smart_quote_data:/var/lib/postgresql/data
+
+volumes:
+  smart_quote_data:
