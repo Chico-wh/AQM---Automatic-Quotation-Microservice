@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from fastapi.exceptions import MalformedRequest
-from routes import auth
+from api.v1.routes import auth
 
 Main_router = APIRouter()
 
